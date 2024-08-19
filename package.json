@@ -34,5 +34,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "axios": "^1.7.2",
+    "crypto": "^1.0.1",
+    "crypto-browserify": "^3.12.0",
+    "ollama": "^0.5.1",
+    "os": "^0.1.2",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1"
   }
 }

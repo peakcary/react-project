@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css"; 
+import OllamaComponent from './components/OllamaComponent'
+import OllamaHComponent from './components/OllamaHComponent'
+import YuanqiComponent from './components/YuanqiComponent'
 
-function App() {
+function App() {  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App"> 
+      {/* <OllamaComponent />
+      <OllamaHComponent />
+      <YuanqiComponent /> */}
+
+      <h1>Welcome to Retro Pixel World123456</h1>
+      <h2 className="h1-jockey">This is using Jockey One Font123456</h2>
     </div>
   );
 }
