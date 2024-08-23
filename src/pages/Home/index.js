@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import CoinRain from '../../components/CoinRain'; // 导入 CoinRain 组件
+import CoinRain from '../../components/CoinRain'; // 导入 CoinRain 组件 
+import BoxAnimation from '../../components/BoxAnimation'; // 导入 CoinRain 组件 
 
 
 function About() {
@@ -17,7 +18,8 @@ function About() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-md"> 
+        <BoxAnimation></BoxAnimation>
       <button
         style={{
           padding: '10px 20px',
