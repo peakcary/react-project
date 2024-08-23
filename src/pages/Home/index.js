@@ -1,12 +1,43 @@
-import React from "react";
+import React, { useState } from 'react';
+import CoinRain from '../../components/CoinRain'; // 导入 CoinRain 组件
+
 
 function About() {
+  const [trigger, setTrigger] = useState(false);
+  const handleCoinRain = () => {
+    console.log('aa')
+    // 每次点击按钮时，触发撒金币效果
+    setTrigger(true);
+
+    // 重置 trigger 状态为 false 以便下次点击可以再次触发
+    setTimeout(() => {
+      setTrigger(false);
+    }, 0); // 可以立即重置
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
       <div className="w-full max-w-md">
+      <button
+        style={{
+          padding: '10px 20px',
+          fontSize: '16px',
+          cursor: 'pointer',
+        }}
+        onClick={handleCoinRain}
+      >
+        撒金币
+      </button>
+
+      {/* 撒金币效果组件 */}
+      <CoinRain trigger={trigger} />
+
         <div className="bg-white p-4 rounded-lg shadow-lg">
           <h1 className="text-xl font-bold mb-4">动态自适应区域</h1>
           <div className="max-h-[70vh] overflow-y-auto bg-gray-200 p-4">
+
+
+        
             <p>
               这是一个自适应的内容区域，始终保持在可视窗口的70%以内。即使在不同设备上，它也能够适配屏幕大小。
             </p>
