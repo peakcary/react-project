@@ -1,9 +1,24 @@
 import React, { useState } from 'react';
 import CoinRain from '../../components/CoinRain'; // 导入 CoinRain 组件 
 import BoxAnimation from '../../components/BoxAnimation'; // 导入 CoinRain 组件 
+import DigitRoller from '../../components/DigitRoller'; // 导入 CoinRain 组件 
+
 
 
 function About() {
+  const [numbers, setNumbers] = useState([0, 0, 0]);
+
+  const handleRoll = () => {
+    // 生成三个随机数
+    const newNumbers = [
+      Math.floor(Math.random() * 10),
+      Math.floor(Math.random() * 10),
+      Math.floor(Math.random() * 10)
+    ];
+    setNumbers(newNumbers); // 更新状态，触发数字滚动
+  };
+
+  
   const [trigger, setTrigger] = useState(false);
   const handleCoinRain = () => {
     console.log('aa')
@@ -19,6 +34,17 @@ function About() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
       <div className="w-full max-w-md"> 
+
+      <div>
+      <h1>数字滚动动画</h1>
+      <DigitRoller targetNumbers={numbers} duration={3000} />
+      <button onClick={handleRoll} style={{ padding: '10px 20px', marginTop: '20px', fontSize: '16px' }}>
+        开始滚动
+      </button>
+    </div>
+
+
+        
         <BoxAnimation></BoxAnimation>
       <button
         style={{
