@@ -1,35 +1,70 @@
-import React from "react";
+import React, { useState } from 'react';
+import ThreeDigitCycler from '../../components/ThreeDigitCycler';
 
-function About() {
+const App = () => {
+  const [startCycling, setStartCycling] = useState(false);
+  const [stopCycling, setStopCycling] = useState(false);
+  const [stopAtNumbers, setStopAtNumbers] = useState(null);
+
+  const handleStart = () => {
+    setStopCycling(false);  // 确保未停止
+    setStartCycling(true);  // 启动循环
+  };
+
+  const handleStop = () => {
+    setStartCycling(false);  // 停止循环
+    setStopCycling(true);    // 停止动画
+  };
+
+  const handleStopAtNumber = (num1, num2, num3) => {
+    setStartCycling(false);  // 停止循环
+    setStopCycling(false);   // 停止动画
+    setStopAtNumbers([num1, num2, num3]);  // 设置要停止的数字
+  };
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-md">
-        <div className="bg-white p-4 rounded-lg shadow-lg">
-          <h1 className="text-xl font-bold mb-4">动态自适应区域</h1>
-          <div className="max-h-[70vh] overflow-y-auto bg-gray-200 p-4">
-            <p>
-              这是一个自适应的内容区域，始终保持在可视窗口的70%以内。即使在不同设备上，它也能够适配屏幕大小。
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-              scelerisque velit vitae ligula fermentum, sit amet feugiat mi
-              varius. Fusce nec commodo urna. Curabitur dapibus nisl sed
-              fermentum pharetra. Cras pharetra urna ac elit cursus, at
-              ultricies augue scelerisque. Sed sit amet tellus sit amet mauris
-              interdum elementum sit amet a lorem.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ac
-              lectus venenatis, facilisis orci id, vehicula ex. Mauris a dui
-              quis nisi lacinia pulvinar. Integer vehicula enim orci, in sodales
-              purus consectetur nec.
-            </p>
-            {/* 可以继续添加更多的内容 */}
-          </div>
-        </div>
+    <div className="flex flex-col items-center space-y-4">
+      <ThreeDigitCycler
+        startCycling={startCycling}
+        stopCycling={stopCycling}
+        stopAtNumbers={stopAtNumbers}
+      />
+      <div className="space-x-4">
+        <button
+          onClick={handleStart}
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Start
+        </button>
+        <button
+          onClick={handleStop}
+          className="bg-red-500 text-white px-4 py-2 rounded"
+        >
+          Stop
+        </button>
+      </div>
+      <div className="space-x-4">
+        <button
+          onClick={() => handleStopAtNumber(1, 2, 3)}
+          className="bg-gray-500 text-white px-4 py-2 rounded"
+        >
+          Stop at 123
+        </button>
+        <button
+          onClick={() => handleStopAtNumber(4, 5, 6)}
+          className="bg-gray-500 text-white px-4 py-2 rounded"
+        >
+          Stop at 456
+        </button>
+        <button
+          onClick={() => handleStopAtNumber(7, 8, 9)}
+          className="bg-gray-500 text-white px-4 py-2 rounded"
+        >
+          Stop at 789
+        </button>
       </div>
     </div>
   );
-}
+};
 
-export default About;
+export default App;
