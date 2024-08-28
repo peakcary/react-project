@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./index.css"; 
 
 const Tab1 = () => {
   const navigate = useNavigate();
-
+ 
   return (
     <div className="flex items-center justify-center h-full">
       <div>
@@ -14,7 +15,7 @@ const Tab1 = () => {
         >
           Go to Info Page
         </button>
-      </div>
+      </div> 
     </div>
   );
 };

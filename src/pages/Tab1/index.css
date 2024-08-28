@@ -1,0 +1,38 @@
+.slot-machine-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid black;
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .num-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
