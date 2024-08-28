@@ -55,6 +55,7 @@ const BoxAnimation = () => {
             }}
           >
             {box + 1}
+            ddddsdsaadfda
           </animated.div>
         ))}
       </div>

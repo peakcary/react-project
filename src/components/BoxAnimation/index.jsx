@@ -39,7 +39,7 @@ const BoxAnimation = () => {
       if (step >= totalSteps) {
         setSelectedBox(targetBox); // 最终定位到目标方块
         setIsAnimating(false);
-        setTimeout(() => setShowCoins(true), 500); // 500ms后触发撒金币效果
+        // setTimeout(() => setShowCoins(true), 500); // 500ms后触发撒金币效果
         return;
       }
 
