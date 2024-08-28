@@ -1,32 +1,44 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Home from './pages/Home';
-import About from './pages/About';
-import Settings from './pages/Settings';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import LoadingPage from "./pages/LoadingPage";
+import TabSwitchPage from "./pages/TabSwitchPage";
+import InfoPage from "./pages/InfoPage";
+import Tab1 from "./pages/Tab1";
+import Tab2 from "./pages/Tab2";
+import Tab3 from "./pages/Tab3";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress(prev => prev + 10);
+    }, 300);
+
+    if (progress >= 100) {
+      setLoading(false);
+      clearInterval(timer);
+    }
+
+    return () => clearInterval(timer);
+  }, [progress]);
+
   return (
     <Router>
-      <div className="flex flex-col items-center justify-center h-screen overflow-hidden">
-        <div className="flex-grow p-4">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/settings" element={<Settings />} />
-          </Routes>
-        </div>
-        <div className="fixed bottom-0 left-0 w-full bg-gray-800 text-white flex justify-around p-4">
-          <Link to="/" className="flex flex-col items-center text-center text-sm sm:text-base hover:text-yellow-500">
-            <span className="block">Home</span>
-          </Link>
-          <Link to="/about" className="flex flex-col items-center text-center text-sm sm:text-base hover:text-yellow-500">
-            <span className="block">About</span>
-          </Link>
-          <Link to="/settings" className="flex flex-col items-center text-center text-sm sm:text-base hover:text-yellow-500">
-            <span className="block">Settings</span>
-          </Link>
-        </div>
-      </div>
+      {loading ? (
+        <LoadingPage progress={progress} />
+      ) : (
+        <Routes>
+          <Route path="/" element={<Navigate to="/tab/1" replace />} />
+          <Route path="/tab" element={<TabSwitchPage />}>
+            <Route path="1" element={<Tab1 />} />
+            <Route path="2" element={<Tab2 />} />
+            <Route path="3" element={<Tab3 />} />
+          </Route>
+          <Route path="/info" element={<InfoPage />} />
+        </Routes>
+      )}
     </Router>
   );
 }
