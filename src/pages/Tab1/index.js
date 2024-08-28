@@ -1,62 +1,40 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./index.css"; 
 
-import DigitRoller from '../../components/DigitRoller1'
+import DigitRoller from '../../components/DigitRoller'
 
-const Tab1 = () => {
-  const navigate = useNavigate();
- 
-  const [rolling, setRolling] = useState(false);
-  const [targetNumbers, setTargetNumbers] = useState([0, 0, 0]);
+const Tab1 = () => { 
+  const [numbers, setNumbers] = useState([0, 0, 0]);
 
-  const handleStartRolling = () => {
-    setRolling(true); // 启动滚动
+  const handleRoll = () => {
+    // 生成三个随机数
+    const newNumbers = [
+      Math.floor(Math.random() * 10),
+      Math.floor(Math.random() * 10),
+      Math.floor(Math.random() * 10),
+    ];
+    setNumbers(newNumbers); // 更新状态，触发数字滚动
   };
-
-  const handleStopRolling = () => {
-    setRolling(false); // 停止滚动
-  };
-
-  const handleTargetChange = (index, value) => {
-    const newTargetNumbers = [...targetNumbers];
-    newTargetNumbers[index] = parseInt(value) % 10;
-    setTargetNumbers(newTargetNumbers); // 更新目标数字
-  };
-
 
 
 
   return (
     <div className="flex items-center justify-center h-full">
-      <div>
-      <DigitRoller targetNumbers={targetNumbers} rolling={rolling} />
-
-<div style={{ marginTop: '20px' }}>
-  {targetNumbers.map((num, index) => (
-    <div key={index} style={{ margin: '10px 0' }}>
-      <label>Digit {index + 1} Target: </label>
-      <input
-        type="number"
-        value={num}
-        onChange={e => handleTargetChange(index, e.target.value)}
-        min={0}
-        max={9}
-      />
-    </div>
-  ))}
-</div>
-
-<div style={{ marginTop: '20px' }}>
-  <button onClick={handleStartRolling} disabled={rolling}>
-    Start Rolling
-  </button>
-  <button onClick={handleStopRolling} disabled={!rolling} style={{ marginLeft: '10px' }}>
-    Stop and Set to Target
-  </button>
-</div>
- 
-      </div> 
+       <div>
+          <h1>数字滚动动画</h1>
+          <DigitRoller targetNumbers={numbers} duration={3000} />
+          <button
+            onClick={handleRoll}
+            style={{
+              padding: "10px 20px",
+              marginTop: "20px",
+              fontSize: "16px",
+            }}
+          >
+            开始滚动
+          </button>
+        </div>
     </div>
   );
 };

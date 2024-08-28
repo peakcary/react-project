@@ -28,6 +28,9 @@ const DigitRoller = ({ targetNumbers = [0, 0, 0], duration = 3000 }) => {
     });
   }, [targetNumbers, api, duration]);
 
+
+  
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
       {springs.map((style, index) => (
