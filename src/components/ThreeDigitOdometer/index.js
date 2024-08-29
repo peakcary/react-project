@@ -5,8 +5,8 @@ import 'odometer/themes/odometer-theme-default.css';
 const ThreeDigitOdometer = () => {
   const [odometerValues, setOdometerValues] = useState([0, 0, 0]);  // 三个独立数字的初始值
   const [rolling, setRolling] = useState(false);
-  const [targetValues, setTargetValues] = useState([9, 9, 9]); // 设置目标值
-  const [speed, setSpeed] = useState(2000);  // 滚动速度
+  const [targetValues, setTargetValues] = useState([5, 3, 7]); // 目标值设为 0-9
+  const [speed, setSpeed] = useState(1000);  // 滚动速度
 
   const intervalRef = useRef([]);
 
@@ -14,9 +14,9 @@ const ThreeDigitOdometer = () => {
     intervalRef.current = [
       setInterval(() => {
         setOdometerValues((prevValues) => [
-          (prevValues[0] + 1) % 9,
-          (prevValues[1] + 2) % 9,
-          (prevValues[2] + 3) % 9,
+          (prevValues[0] + 1) % 10, // 限制在 0-9 之间
+          (prevValues[1] + 1) % 10,
+          (prevValues[2] + 1) % 10,
         ]);
       }, speed),
     ];
@@ -24,7 +24,7 @@ const ThreeDigitOdometer = () => {
 
   const stopRolling = useCallback(() => {
     intervalRef.current.forEach((interval) => clearInterval(interval));
-    setOdometerValues(targetValues);
+    setOdometerValues(targetValues);  // 停止时设置每个数字为目标值
   }, [targetValues]);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const ThreeDigitOdometer = () => {
 
   const handleTargetChange = (index, value) => {
     const newTargets = [...targetValues];
-    newTargets[index] = parseInt(value, 10) || 0;
+    newTargets[index] = (parseInt(value, 10) % 10) || 0; // 限制输入值为 0-9
     setTargetValues(newTargets);
   };
 
@@ -54,9 +54,9 @@ const ThreeDigitOdometer = () => {
     <div className="flex flex-col items-center">
       <div className="flex space-x-4">
         {/* 三个独立的 Odometer */}
-        <Odometer value={odometerValues[0]} format="ddd" duration={speed / 1000} />
-        <Odometer value={odometerValues[1]} format="ddd" duration={speed / 1000} />
-        <Odometer value={odometerValues[2]} format="ddd" duration={speed / 1000} />
+        <Odometer value={odometerValues[0]} format="d" duration={speed / 1000} />
+        <Odometer value={odometerValues[1]} format="d" duration={speed / 1000} />
+        <Odometer value={odometerValues[2]} format="d" duration={speed / 1000} />
       </div>
 
       {/* 控制按钮 */}
@@ -79,6 +79,8 @@ const ThreeDigitOdometer = () => {
             onChange={(e) => handleTargetChange(index, e.target.value)}
             className="px-2 py-1 border rounded-md"
             placeholder={`Target ${index + 1}`}
+            min="0"
+            max="9"
           />
         ))}
       </div>
