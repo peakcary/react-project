@@ -1,13 +1,26 @@
-import "./App.css";  
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoadingPage from './pages/LoadingPage';
+import HomePage from './pages/HomePage';
+import InfoPage from './pages/InfoPage';
+import Tabs from './pages/Tabs';
 
-function App() {  
+const App = () => {
   return (
-    <div className="App">  
-
-      <h1>Welcome to Retro Pixel World123456</h1>
-      <h2 className="h1-jockey">This is using Jockey One Font123456</h2>
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<LoadingPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/info" element={<InfoPage />} />
+          <Route path="/page1" element={<div><h1>Page 1</h1></div>} />
+          <Route path="/page2" element={<div><h1>Page 2</h1></div>} />
+        </Routes>
+        <Tabs />
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
