@@ -1,0 +1,25 @@
+/* src/Tabs.css */
+.tabs {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #ccc;
+  }
+  
+  .tabs button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .tabs button:hover {
+    background-color: #ddd;
+  }
+  
